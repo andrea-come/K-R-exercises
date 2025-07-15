@@ -2,6 +2,8 @@
    
    Write a program that prints its input to its output, one word per line.
 
+   https://github.com/andrea-come
+
    2025 07 15
 */
 
