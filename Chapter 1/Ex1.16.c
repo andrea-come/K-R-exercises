@@ -30,23 +30,25 @@ int main(void)
   char line[MAX_LEN] = {},     // current input line
        longest[MAX_LEN] = {};  // longest line so far
 
-  while( (len = get_line(line, MAX_LEN)) > 0 ){
+  while( (len = get_line(line, MAX_LEN)) > 0){
     if(len > max) {
       max = len;
       copy_string(line, longest);
     }
   }
   
-  // Check if `line` is too long  
-  if(len > MAX_LEN){
-    printf("Curent line is longer than %d characters ", MAX_LEN - 1);
-    printf("(including newline and null character),\n");
-    // Print what stored    
-    printf("the first part of it is:\n%s", longest);
-  }
-
-  else{
-    printf("Longest string is %d characters long and is:\n%s", max, longest);
+  
+  if(max > 0){
+    printf("Longest line is %d characters long ", max);
+    
+    if(max > MAX_LEN){ // Check if `line` is too long
+      printf("and exceeds buffer capacity of %d characters "
+             "(excluding null terminator),\n"
+             "the stored portion is:\n%s", 
+             MAX_LEN -1, longest);
+    } else {
+      printf("and is:\n%s", longest);
+    }  
   }  
 
   return 0;
@@ -60,15 +62,20 @@ int get_line(char s[], int max_len){
   for(i; i < max_len-1 && (c = getchar()) != EOF && c != '\n'; i++){
 		s[i] = c;
 	}
-  if(c == '\n'){ s[i++] = c; }  // empty line case 
+  if(c == '\n'){  // empty line case
+    s[i++] = c;
+  }   
   s[i] = '\0';
    
-  // Clean buffer if current line is too long
+  // Flush remaining chars if line too long
   if( c != '\n' && c != EOF){
-    while( (c = getchar()) != '\n' && c != EOF ) { i++; }
-    if( c == '\n') { i++; }
+    while( (c = getchar()) != '\n' && c != EOF){ 
+      i++;
+    }
+    if(c == '\n'){
+      i++;
+    }
   }
-
 
   return i;
 }
