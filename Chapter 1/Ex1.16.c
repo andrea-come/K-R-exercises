@@ -31,7 +31,7 @@ int main(void)
        longest[MAX_LEN] = {};  // longest line so far
 
   while( (len = get_line(line, MAX_LEN)) > 0){
-    if(len > max) {
+    if(len > max){
       max = len;
       copy_string(line, longest);
     }
@@ -68,7 +68,7 @@ int get_line(char s[], int max_len){
   s[i] = '\0';
    
   // Flush remaining chars if line too long
-  if( c != '\n' && c != EOF){
+  if(c != '\n' && c != EOF){
     while( (c = getchar()) != '\n' && c != EOF){ 
       i++;
     }
@@ -82,5 +82,7 @@ int get_line(char s[], int max_len){
 
 void copy_string(char src[], char dst[]){
   int i = 0;
-  while( (dst[i] = src[i]) != '\0') { i++; }
+  while( (dst[i] = src[i]) != '\0'){
+    i++;
+  }
 }
