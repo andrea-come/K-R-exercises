@@ -42,10 +42,10 @@ int main(void)
       	// Compute the number of blanks needed to reach the next tab stop
         int n_blanks = TAB_STOPS - (i % TAB_STOPS);
         
-        // Replace tab with blanks
-        if( !detab(line, n_blanks, i, len, MAX_LEN) ){
-          len += n_blanks;
-          i += n_blanks - 1;  // Skip over the newly inserted blanks
+      	// Replace tab with blanks
+				if( !detab(line, n_blanks, i, len, MAX_LEN) ){
+        	len += n_blanks;
+        	i += n_blanks - 1;  // Skip over the newly inserted blanks
         }
       }
     }
@@ -66,19 +66,16 @@ int get_line(char s[], int max_len){
   for(; i < max_len-1 && (c = getchar()) != EOF && c != '\n'; i++){
 		s[i] = c;
 	}
-  if(c == '\n'){  // empty line case
-    s[i++] = c;
-  }   
+	
+	// empty line case
+  if(c == '\n'){ s[i++] = c; }
+	
   s[i] = '\0';
    
-   // Discard the rest of the line if it's too long
+  // Discard the rest of the line if it's too long
   if(c != '\n' && c != EOF){
-    while( (c = getchar()) != '\n' && c != EOF){ 
-      i++;
-    }
-    if(c == '\n'){
-      i++;
-    }		
+    while( (c = getchar()) != '\n' && c != EOF){ i++; }
+    if(c == '\n'){ i++; }		
   }
 
   return i;
@@ -86,9 +83,7 @@ int get_line(char s[], int max_len){
 
 void clean_string(char s[], int len, int max_len){
   int end = len < max_len? len : max_len;
-  for(int i = 0; i < end; i++){
-      s[i] = '\0';
-  }
+  for(int i = 0; i < end; i++){ s[i] = '\0'; }
 }
 
 
