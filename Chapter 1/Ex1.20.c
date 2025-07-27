@@ -35,12 +35,11 @@ int main(void)
 {
 	char line[MAX_LEN];
 	int len;
-  
-  
+    
   while( (len = get_line(line, MAX_LEN)) > 0 ){
-    for(int i = 0; i < len; i++){
-      if(line[i] == '\t'){
-        // Compute the number of blanks needed to reach the next tab stop
+  	for(int i = 0; i < len; i++){
+    	if(line[i] == '\t'){
+      	// Compute the number of blanks needed to reach the next tab stop
         int n_blanks = TAB_STOPS - (i % TAB_STOPS);
         
         // Replace tab with blanks
@@ -111,7 +110,7 @@ int detab(char s[], int n_blanks, int pos, int len, int max_len){
 	  for(int i = pos; i < pos + n_blanks; i++){
       s[i] = '*';  // debug: use ' ' for actual output
     }
-  } 
-
+	} 
+	
 	return 0;
 }
