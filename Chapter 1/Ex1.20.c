@@ -79,7 +79,7 @@ int get_line(char s[], int max_len){
     }
     if(c == '\n'){
       i++;
-    }
+    }		
   }
 
   return i;
